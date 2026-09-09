@@ -23,6 +23,14 @@ package {
     default_applicable_licenses: ["external_minigbm_license"],
 }
 
+filegroup {
+    name: "minigbm_aidl_allocator_service_srcs",
+    srcs: [
+        "Allocator.cpp",
+        "Main.cpp",
+    ],
+}
+
 cc_defaults {
     name: "minigbm_aidl_allocator_service_defaults",
     defaults: ["minigbm_cros_gralloc_defaults"],
@@ -41,10 +49,7 @@ cc_defaults {
     static_libs: [
         "libaidlcommonsupport",
     ],
-    srcs: [
-        "Allocator.cpp",
-        "Main.cpp",
-    ],
+    srcs: [":minigbm_aidl_allocator_service_srcs"],
 }
 
 cc_binary {
