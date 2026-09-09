@@ -23,6 +23,11 @@ package {
     default_applicable_licenses: ["external_minigbm_license"],
 }
 
+filegroup {
+    name: "minigbm_mapper_stablec_files",
+    srcs: ["Mapper.cpp"],
+}
+
 cc_library_shared {
     name: "mapper.minigbm",
     defaults: ["minigbm_gralloc4_common_defaults"],
@@ -37,7 +42,7 @@ cc_library_shared {
     ],
     srcs: [
         ":minigbm_gralloc4_mapper_files",
-        "Mapper.cpp",
+        ":minigbm_mapper_stablec_files",
     ],
     cpp_std: "c++20",
 }

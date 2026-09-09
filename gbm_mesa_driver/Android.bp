@@ -36,6 +36,27 @@ cc_binary {
     defaults: ["minigbm_aidl_allocator_service_defaults"],
     init_rc: ["android.hardware.graphics.allocator-service.minigbm_gbm_mesa.rc"],
     shared_libs: ["libminigbm_gralloc_gbm_mesa"],
+    cflags: ["-DMINIGBM_MAPPER_SUFFIX=\"minigbm_gbm_mesa\""],
+}
+
+cc_library_shared {
+    name: "mapper.minigbm_gbm_mesa",
+    defaults: ["minigbm_gralloc4_common_defaults"],
+    shared_libs: [
+        "android.hardware.graphics.allocator-V2-ndk",
+        "libminigbm_gralloc_gbm_mesa",
+    ],
+    header_libs: [
+        "libbase_headers",
+        "libimapper_stablec",
+        "libimapper_providerutils",
+    ],
+    cflags: ["-DDRV_EXTERNAL"],
+    srcs: [
+        ":minigbm_gralloc4_mapper_files",
+        ":minigbm_mapper_stablec_files",
+    ],
+    cpp_std: "c++20",
 }
 
 cc_library_shared {

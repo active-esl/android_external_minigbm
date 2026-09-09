@@ -22,6 +22,10 @@ using BufferDescriptorInfoV4 =
 static const std::string STANDARD_METADATA_DATASPACE = "android.hardware.graphics.common.Dataspace";
 
 namespace aidl::android::hardware::graphics::allocator::impl {
+
+#ifndef MINIGBM_MAPPER_SUFFIX
+#define MINIGBM_MAPPER_SUFFIX "minigbm"
+#endif
 namespace {
 
 inline ndk::ScopedAStatus ToBinderStatus(AllocationError error) {
@@ -198,7 +202,7 @@ ndk::ScopedAStatus Allocator::isSupported(const BufferDescriptorInfo& descriptor
 }
 
 ndk::ScopedAStatus Allocator::getIMapperLibrarySuffix(std::string* outResult) {
-    *outResult = "minigbm";
+    *outResult = MINIGBM_MAPPER_SUFFIX;
     return ndk::ScopedAStatus::ok();
 }
 
