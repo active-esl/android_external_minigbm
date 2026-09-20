@@ -18,6 +18,9 @@
 
 LOCAL_PATH := $(call my-dir)
 
+# The Mesa GBM wrapper must not enter non-Mesa products (for example the
+# i.MX95 Mali/Arm-gralloc vendor image), where libgbm_mesa is not built.
+ifneq ($(TARGET_USE_MESA),false)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
@@ -34,3 +37,4 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_VENDOR_MODULE := true
 
 include $(BUILD_SHARED_LIBRARY)
+endif
